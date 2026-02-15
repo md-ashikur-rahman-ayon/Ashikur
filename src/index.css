@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-primary: #FBFBFD;
+    /* iOS/Mac Neutral */
+    --text-primary: #1D1D1F;
+    /* San Francisco Text Black */
+    --accent-blue: #0071E3;
+    /* Apple Blue */
+    --accent-blue-soft: rgba(0, 113, 227, 0.1);
+    --text-secondary: #86868B;
+    --card-bg: #FFFFFF;
+    --border-soft: rgba(0, 0, 0, 0.04);
+    --surface-glass: rgba(255, 255, 255, 0.7);
+  }
+
+  html {
+    background-color: var(--bg-primary);
+    scroll-behavior: initial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    @apply selection:bg-black selection:text-white;
+    font-family: 'Times New Roman', Times, serif;
+    /* Editorial choice kept */
+    cursor: none !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tighter;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  * {
+    cursor: none !important;
+  }
+}
+
+@layer utilities {
+
+  /* iOS/Mac Level Glassmorphism */
+  .glass {
+    background-image: radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.8) 0, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.3) 0, transparent 50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.01), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+  }
+
+  /* One UI Style Elevation */
+  .elevation-1 {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  }
+
+  .elevation-2 {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Apple Style Transitions */
+  .premium-transition {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .premium-transition-fast {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Material You Style Mesh Glow */
+  .bg-mesh {
+    background-color: #FBFBFD;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(0, 113, 227, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.03) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(0, 113, 227, 0.02) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.02) 0px, transparent 50%);
+  }
+
+  .text-gradient-blue {
+    background: linear-gradient(135deg, #0071E3 0%, #6366F1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Custom blinking cursor effect - smoother step */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1.2s infinite step-end;
+}
+
+/* Lenis Specific CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
